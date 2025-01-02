@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovment : MonoBehaviour
@@ -20,4 +21,6 @@ public class PlayerMovment : MonoBehaviour
         Vector3 movement = new Vector3(x, y, 0);
         transform.Translate(movement * speed * Time.deltaTime);
     }
+    
+
 }

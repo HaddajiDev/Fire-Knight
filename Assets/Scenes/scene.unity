@@ -546,7 +546,6 @@ MonoBehaviour:
   - {fileID: 1982205314345556, guid: c9518fddab9921444b82e86f3d8a9eec, type: 3}
   closedRoom: {fileID: 1586528034238900, guid: 71addd1db0904154d960002486bf6a2b, type: 3}
   rooms: []
-  waitTime: 1
   boss: {fileID: 1898445321837384, guid: 09e14c596e782a742829f1166838514d, type: 3}
   Player: {fileID: 7223922656990176162, guid: 29b0b268aba26465cb722712366bca33, type: 3}
   PlayerspawnPoint: {fileID: 1370505774}

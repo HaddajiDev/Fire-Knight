@@ -685,6 +685,7 @@ MonoBehaviour:
   Size: 2.5
   Walls: {fileID: 4157197769124990}
   SpawnPoints: {fileID: 4150542390612824}
+  Holder: {fileID: 0}
 --- !u!1 &1476785428554506
 GameObject:
   m_ObjectHideFlags: 0

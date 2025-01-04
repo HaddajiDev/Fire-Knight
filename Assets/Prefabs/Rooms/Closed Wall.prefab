@@ -174,3 +174,4 @@ MonoBehaviour:
   Size: 2.5
   Walls: {fileID: 0}
   SpawnPoints: {fileID: 0}
+  Holder: {fileID: 0}

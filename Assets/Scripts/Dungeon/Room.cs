@@ -5,12 +5,25 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     public RoomType roomType;
+    
+    private List<Enemy> enemies;
+    
+    [Header("Shop")]
+    public GameObject Shop;
+    
+    [Header("Spawn Points")]
     public Transform SpawnPoints;
-    public Enemy[] enemies;
+    
+    [Header("Boss")]
+    public GameObject Boss;
+    
+    [Header("Traps")]
+    public GameObject Traps;
     public enum RoomType
     {
         Empty,
         Regular, // with enemeis
+        traps,
         shop,
         Boss,
     }

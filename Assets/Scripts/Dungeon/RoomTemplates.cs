@@ -57,30 +57,54 @@ public class RoomTemplates : MonoBehaviour {
 	{
 		roomTypes = new List<Room.RoomType>(new Room.RoomType[rooms.Count]);
 
-		int shopIndex;
-		do
-		{
-			shopIndex = Random.Range(0, rooms.Count);
-		} while (roomTypes[shopIndex] != Room.RoomType.Empty);
+		int shopIndex = Random.Range(0, rooms.Count - 1);
 
 		roomTypes[shopIndex] = Room.RoomType.shop;
 		
+
 		for (int i = 0; i < rooms.Count; i++)
 		{
-			if (roomTypes[i] == Room.RoomType.Boss || roomTypes[i] == Room.RoomType.shop)
+			if (i == shopIndex)
 			{
+				Room currentRoom = rooms[i].GetComponent<Room>();
+				currentRoom.roomType = Room.RoomType.shop;
 				continue;
 			}
-			Room.RoomType randomType = (Room.RoomType)Random.Range(0, 3);
-			rooms[i].GetComponent<Room>().roomType = randomType;
-			
-			if(i == rooms.Count -1 ){
+
+			if (i == rooms.Count - 1)
+			{
+				roomTypes[i] = Room.RoomType.Boss;
+
 				Room currentRoom = rooms[i].GetComponent<Room>();
 				currentRoom.roomType = Room.RoomType.Boss;
-						
+
 				Instantiate(boss, rooms[i].transform.position, Quaternion.identity);
 			}
+			else
+			{
+				Room.RoomType randomType = GetRandomRoomType();
+				roomTypes[i] = randomType;
+
+				Room currentRoom = rooms[i].GetComponent<Room>();
+				currentRoom.roomType = randomType;
+			}
+			
 		}
+		
+		
+		
+	}
+	public Room.RoomType GetRandomRoomType()
+	{
+		Room.RoomType[] validRoomTypes = new Room.RoomType[]
+		{
+			Room.RoomType.Regular,
+			Room.RoomType.traps,
+			Room.RoomType.Empty
+		};
+		int randomIndex = Random.Range(0, validRoomTypes.Length);
+    
+		return validRoomTypes[randomIndex];
 	}
 
 }

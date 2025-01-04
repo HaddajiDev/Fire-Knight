@@ -7,18 +7,7 @@ public class Room : MonoBehaviour
     public RoomType roomType;
     
     private List<Enemy> enemies;
-    
-    [Header("Shop")]
-    public GameObject Shop;
-    
-    [Header("Spawn Points")]
-    public Transform SpawnPoints;
-    
-    [Header("Boss")]
-    public GameObject Boss;
-    
-    [Header("Traps")]
-    public GameObject Traps;
+
     public enum RoomType
     {
         Empty,
@@ -27,6 +16,8 @@ public class Room : MonoBehaviour
         shop,
         Boss,
     }
+
+
     
     private void OnTriggerEnter2D(Collider2D other)
     {

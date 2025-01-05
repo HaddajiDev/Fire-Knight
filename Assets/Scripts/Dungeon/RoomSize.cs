@@ -71,15 +71,18 @@ public class RoomSize : MonoBehaviour
 
     private void CheckForRoomType(string roomType)
     {
-        for (int i = 0; i < Holder.transform.childCount; i++)
+        if (Holder != null)
         {
-            if (Holder.transform.GetChild(i).name == roomType)
+            for (int i = 0; i < Holder.transform.childCount; i++)
             {
-                Holder.transform.GetChild(i).gameObject.SetActive(true);
-            }
-            else
-            {
-                Holder.transform.GetChild(i).gameObject.SetActive(false);
+                if (Holder.transform.GetChild(i).name == roomType)
+                {
+                    Holder.transform.GetChild(i).gameObject.SetActive(true);
+                }
+                else
+                {
+                    Holder.transform.GetChild(i).gameObject.SetActive(false);
+                }
             }
         }
     }

@@ -5,8 +5,8 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     public RoomType roomType;
+    public bool CornerRoom = false;
     
-    private List<Enemy> enemies;
 
     public enum RoomType
     {

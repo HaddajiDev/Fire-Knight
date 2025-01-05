@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerMovment : MonoBehaviour
 {
-    public Joystick joystick;
+    private Joystick joystick;
 
     [SerializeField] private float speed = 10f;
     private Animator animator;
@@ -15,6 +15,7 @@ public class PlayerMovment : MonoBehaviour
     {
         currentScale = transform.localScale;
         animator = GetComponent<Animator>();
+        joystick = GameObject.FindGameObjectWithTag("joystick").GetComponent<Joystick>();
     }
     
     void Update()

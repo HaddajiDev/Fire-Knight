@@ -40,7 +40,7 @@ public class RoomTemplates : MonoBehaviour {
 		GameObject[] SpawnedRooms = GameObject.FindGameObjectsWithTag("Room");
 		for (int i = 0; i < SpawnedRooms.Length; i++)
 		{
-			SpawnedRooms[i].AddComponent<Room>();
+			Room room = SpawnedRooms[i].AddComponent<Room>();
 			SpawnedRooms[i].AddComponent<Rigidbody2D>().isKinematic = true;
 			SpawnedRooms[i].AddComponent<BoxCollider2D>().isTrigger = true;
 			BoxCollider2D box = SpawnedRooms[i].GetComponent<BoxCollider2D>();
@@ -48,26 +48,43 @@ public class RoomTemplates : MonoBehaviour {
 			var main = box.size;
 			main = new Vector2(roomSize.Size * 8, roomSize.Size * 8);
 			box.size = main;
+
+			if (SpawnedRooms[i].gameObject.name.Contains("corner"))
+				room.CornerRoom = true;
 		}
 		AssignRoomTypes();
 		Instantiate(RoomTemplates.instance.Player, PlayerspawnPoint.localPosition, Quaternion.identity);
+		GameManager.instance.StartGame();
 	}
 
 	private void AssignRoomTypes()
 	{
 		roomTypes = new List<Room.RoomType>(new Room.RoomType[rooms.Count]);
+		List<int> cornerRoomIndices = new List<int>();
+		for (int i = 0; i < rooms.Count; i++)
+		{
+			if (rooms[i].TryGetComponent<Room>(out Room room) && room.CornerRoom)
+			{
+				cornerRoomIndices.Add(i);
+			}
+		}
 
-		int shopIndex = Random.Range(0, rooms.Count - 1);
-
+		int shopIndex = cornerRoomIndices[Random.Range(0, cornerRoomIndices.Count - 1)];
 		roomTypes[shopIndex] = Room.RoomType.shop;
+		rooms[shopIndex].GetComponent<Room>().roomType = Room.RoomType.shop;
+		if (cornerRoomIndices.Count == 0)
+		{
+			Debug.LogWarning("No corner rooms found!");
+			roomTypes[shopIndex] = Room.RoomType.Empty;
+			rooms[shopIndex].GetComponent<Room>().roomType = Room.RoomType.Empty;
+		}
+
 		
 
 		for (int i = 0; i < rooms.Count; i++)
 		{
 			if (i == shopIndex)
 			{
-				Room currentRoom = rooms[i].GetComponent<Room>();
-				currentRoom.roomType = Room.RoomType.shop;
 				continue;
 			}
 
@@ -82,11 +99,18 @@ public class RoomTemplates : MonoBehaviour {
 			}
 			else
 			{
-				Room.RoomType randomType = GetRandomRoomType();
+				Room.RoomType randomType = GetRandomRoomType(Room.RoomType.traps, Room.RoomType.Empty, Room.RoomType.Regular);
 				roomTypes[i] = randomType;
-
+				
 				Room currentRoom = rooms[i].GetComponent<Room>();
-				currentRoom.roomType = randomType;
+				if (currentRoom.CornerRoom)
+				{
+					currentRoom.roomType = Room.RoomType.Empty;
+				}
+				else
+				{
+					currentRoom.roomType = randomType;
+				}
 			}
 			
 		}
@@ -94,14 +118,9 @@ public class RoomTemplates : MonoBehaviour {
 		
 		
 	}
-	public Room.RoomType GetRandomRoomType()
+	public Room.RoomType GetRandomRoomType(params Room.RoomType[] types)
 	{
-		Room.RoomType[] validRoomTypes = new Room.RoomType[]
-		{
-			Room.RoomType.Regular,
-			Room.RoomType.traps,
-			Room.RoomType.Empty
-		};
+		Room.RoomType[] validRoomTypes = types;
 		int randomIndex = Random.Range(0, validRoomTypes.Length);
     
 		return validRoomTypes[randomIndex];

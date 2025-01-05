@@ -51,6 +51,10 @@ public class RoomSpawner : MonoBehaviour {
 		if(other.CompareTag("SpawnPoint")){
 			if(other.GetComponent<RoomSpawner>().spawned == false && spawned == false){
 				Instantiate(templates.closedRoom, transform.position, Quaternion.identity);
+				if (transform.parent.parent.TryGetComponent<Room>(out Room room))
+				{
+					room.CornerRoom = true;
+				}
 				Destroy(gameObject);
 			} 
 			spawned = true;

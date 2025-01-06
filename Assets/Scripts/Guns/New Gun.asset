@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38d26f23267830eb097459b240bc9c26, type: 3}
+  m_Name: New Gun
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 909913886, guid: c5799b0be2fef9f748bab08441da6d34, type: 3}
+  Gunname: 
+  prefab: {fileID: 0}
+  Ammo: 30
+  damage: 1
+  bulletForce: 60
+  fireRate: 5
+  reloadTime: 2
+  recoil: 7
+  bulletPerShot: 1

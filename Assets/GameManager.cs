@@ -18,4 +18,9 @@ public class GameManager : MonoBehaviour
     {
         vcam.Follow = GameObject.FindGameObjectWithTag("Player").transform;
     }
+
+    public void GetPlayerShoot(bool check)
+    {
+        PlayerShooting.instance.ShootEvent(check);
+    }
 }

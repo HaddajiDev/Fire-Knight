@@ -37,9 +37,16 @@ public class PlayerShooting : MonoBehaviour
     public Gun current_Gun;
 
 
-    private bool EnemyInRange = false;
+    
     [HideInInspector] public bool isShooting = false;
 
+    [Header("Enemy Settings")]
+    public float maxRange;
+    private bool EnemyInRange = false;
+    private GameObject[] enemies;
+    [HideInInspector] public GameObject closestEnemy;
+    public float updateInterval = 0.1f;
+    private float timer = 0f;
 
 
     void Start()
@@ -100,7 +107,43 @@ public class PlayerShooting : MonoBehaviour
         {
             Reload();
         }
+
+        timer += Time.deltaTime;
+        if (timer >= updateInterval)
+        {
+            timer = 0f;
+            FindClosestEnemy();
+        }
     }
+    
+    void FindClosestEnemy()
+    {
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        closestEnemy = null;
+        float closestDistanceSqr = maxRange * maxRange;
+
+        foreach (GameObject enemy in enemies)
+        {
+            float distanceSqr = (enemy.transform.localPosition - transform.localPosition).sqrMagnitude;
+            if (distanceSqr < closestDistanceSqr)
+            {
+                closestDistanceSqr = distanceSqr;
+                closestEnemy = enemy;
+            }
+        }
+        
+        if (closestEnemy != null)
+        {
+            // Debug.Log($"Closest Enemy: {closestEnemy.name}");
+        }
+        else
+        {
+            closestEnemy = null;
+            // Debug.Log("No enemies within range.");
+        }
+    }
+
 
     public void ShootEvent(bool check)
     {
@@ -146,6 +189,4 @@ public class PlayerShooting : MonoBehaviour
         Shooting,
         Reloading
     }
-
-
 }   

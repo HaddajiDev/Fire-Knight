@@ -28,13 +28,18 @@ public class GunRotation : MonoBehaviour
             Object.Rotate(0, 180, 0);
         }
         
-        GameobjectRotation = new Vector2(joystick.Horizontal, joystick.Vertical);
-        GameobjectRotation3 = GameobjectRotation.x;
-        
-        isJoystickActive = GameobjectRotation.magnitude > 0.1f;
-
-        if (isJoystickActive)
+        if (PlayerShooting.instance.closestEnemy != null)
         {
+            GameobjectRotation = (PlayerShooting.instance.closestEnemy.transform.position - Object.position).normalized;
+            if (GameobjectRotation.x > 0 && !FacingRight)
+            {
+                Flip();
+            }
+            else if (GameobjectRotation.x < 0 && FacingRight)
+            {
+                Flip();
+            }
+            
             if (FacingRight)
             {
                 GameobjectRotation2 = GameobjectRotation.x + GameobjectRotation.y * 90;
@@ -45,9 +50,33 @@ public class GunRotation : MonoBehaviour
                 GameobjectRotation2 = GameobjectRotation.x + GameobjectRotation.y * -90;
                 Object.transform.rotation = Quaternion.Euler(0f, 180f, -GameobjectRotation2);
             }
+
         }
-        
-        
+        else
+        {
+            GameobjectRotation = new Vector2(joystick.Horizontal, joystick.Vertical);
+
+
+            GameobjectRotation3 = GameobjectRotation.x;
+
+            isJoystickActive = GameobjectRotation.magnitude > 0.1f;
+
+            if (isJoystickActive)
+            {
+                if (FacingRight)
+                {
+                    GameobjectRotation2 = GameobjectRotation.x + GameobjectRotation.y * 90;
+                    Object.transform.rotation = Quaternion.Euler(0f, 0f, GameobjectRotation2);
+                }
+                else
+                {
+                    GameobjectRotation2 = GameobjectRotation.x + GameobjectRotation.y * -90;
+                    Object.transform.rotation = Quaternion.Euler(0f, 180f, -GameobjectRotation2);
+                }
+            }
+        }
+
+
         if (GameobjectRotation3 < 0 && FacingRight)
         {
             Flip();

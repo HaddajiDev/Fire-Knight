@@ -314,6 +314,10 @@ MonoBehaviour:
   ShootPoint: {fileID: 2249361346256769672}
   GunSprite: {fileID: 6910399847941785265}
   current_Gun: {fileID: 11400000, guid: d7ce2a532820cb5b5b2fcfe43211ceac, type: 2}
+  isShooting: 0
+  maxRange: 10
+  closestEnemy: {fileID: 0}
+  updateInterval: 0.1
 --- !u!1 &4049707509892784335
 GameObject:
   m_ObjectHideFlags: 0

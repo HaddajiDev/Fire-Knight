@@ -11,8 +11,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 currentScale;
     public Transform GunTransform;
 
-    private int lastFacingDirection = 1; // 1 for right, -1 for left
-
+    private int lastFacingDirection = 1;
+    bool flipPlayer, flipGun;
     void Start()
     {
         currentScale = transform.localScale;
@@ -25,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
         float x = joystick.Horizontal;
         float y = joystick.Vertical;
 
-        // Handle animations
         if (x != 0 || y != 0)
         {
             animator.SetTrigger("run");
@@ -35,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("idle");
         }
 
-        // Update facing direction only when there is horizontal input
         if (x > 0)
         {
             lastFacingDirection = 1;
@@ -45,12 +43,43 @@ public class PlayerMovement : MonoBehaviour
             lastFacingDirection = -1;
         }
 
-        // Set scale based on the last facing direction
-        transform.localScale = new Vector3(currentScale.x * lastFacingDirection, currentScale.y, currentScale.z);
-        GunTransform.localScale = new Vector3(0.5f * lastFacingDirection, 0.5f, 1);
+        if (PlayerShooting.instance.closestEnemy == null)
+        {
+            transform.localScale = new Vector3(currentScale.x * lastFacingDirection, currentScale.y, currentScale.z);
+            GunTransform.localScale = new Vector3(0.5f * lastFacingDirection, 0.5f, 1);
+        }
+        else
+        {
+            transform._mLookAt(PlayerShooting.instance.closestEnemy.transform, flipPlayer);
+            GunTransform._mLookAt(PlayerShooting.instance.closestEnemy.transform, flipGun);
+        }
+        
+        
 
-        // Move the player
         Vector3 movement = new Vector3(x, y, 0);
         transform.Translate(movement * speed * Time.deltaTime);
+    }
+    
+    
+}
+
+public static class TransformExtensions
+{
+    public static void _mLookAt(this Transform transform, Transform target, bool flip = false)
+    {
+        if (target == null) return;
+
+        Vector3 scale = transform.localScale;
+
+        if (target.position.x > transform.position.x)
+        {
+            scale.x = Mathf.Abs(scale.x) * -1 * (flip ? 1 : -1);
+        }
+        else
+        {
+            scale.x = Mathf.Abs(scale.x) * (flip ? 1 : -1);
+        }
+
+        transform.localScale = scale;
     }
 }

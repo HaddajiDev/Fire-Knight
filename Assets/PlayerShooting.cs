@@ -42,7 +42,6 @@ public class PlayerShooting : MonoBehaviour
 
     [Header("Enemy Settings")]
     public float maxRange;
-    private bool EnemyInRange = false;
     private GameObject[] enemies;
     [HideInInspector] public GameObject closestEnemy;
     public float updateInterval = 0.1f;
@@ -133,14 +132,9 @@ public class PlayerShooting : MonoBehaviour
             }
         }
         
-        if (closestEnemy != null)
-        {
-            // Debug.Log($"Closest Enemy: {closestEnemy.name}");
-        }
-        else
+        if (closestEnemy == null)
         {
             closestEnemy = null;
-            // Debug.Log("No enemies within range.");
         }
     }
 

@@ -7,7 +7,8 @@ public class TimeController : MonoBehaviour
     public static TimeController instance;
     public Enemy currentEnemy;
     public Room currentRoom;
-    bool FastForward = false;
+    private bool FastForward = false;
+    private bool SlowDown = false;
     void Awake()
     {
         instance = this;
@@ -20,11 +21,24 @@ public class TimeController : MonoBehaviour
         
         if (check)
         {
-            currentEnemy.Speed = currentEnemy.Speed * 2;
+            currentEnemy.Speed *= 2;
         }
         else
         {
-            currentEnemy.Speed = currentEnemy.Speed / 2;
+            currentEnemy.Speed /= 2;
+        }
+    }
+
+    public void isSlowMotion(bool check)
+    {
+        SlowDown = check;
+        if (check)
+        {
+            currentEnemy.Speed /= 2;
+        }
+        else
+        {
+            currentEnemy.Speed *= 2;
         }
     }
 }

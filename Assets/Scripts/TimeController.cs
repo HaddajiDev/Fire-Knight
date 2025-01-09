@@ -5,7 +5,7 @@ using UnityEngine;
 public class TimeController : MonoBehaviour
 {
     public static TimeController instance;
-    public Enemy currentEnemy;
+    private List<Enemy> currentEnemeis;
     public Room currentRoom;
     private bool FastForward = false;
     private bool SlowDown = false;
@@ -21,11 +21,17 @@ public class TimeController : MonoBehaviour
         
         if (check)
         {
-            currentEnemy.Speed *= 2;
+            for (int i = 0; i < currentEnemeis.Count; i++)
+            {
+                currentEnemeis[i].Speed *= 2;
+            }
         }
         else
         {
-            currentEnemy.Speed /= 2;
+            for (int i = 0; i < currentEnemeis.Count; i++)
+            {
+                currentEnemeis[i].Speed /= 2;
+            }
         }
     }
 
@@ -34,11 +40,22 @@ public class TimeController : MonoBehaviour
         SlowDown = check;
         if (check)
         {
-            currentEnemy.Speed /= 2;
+            for (int i = 0; i < currentEnemeis.Count; i++)
+            {
+                currentEnemeis[i].Speed /= 2;
+            }
         }
         else
         {
-            currentEnemy.Speed *= 2;
+            for (int i = 0; i < currentEnemeis.Count; i++)
+            {
+                currentEnemeis[i].Speed *= 2;
+            }
         }
+    }
+
+    public void updateCurrentEnemies(List<Enemy> enemies)
+    {
+        currentEnemeis = enemies;
     }
 }

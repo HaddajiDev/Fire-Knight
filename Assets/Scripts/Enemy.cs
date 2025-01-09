@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (isPatroling && cap == 1)
         {
             Patrol_Point_2();
@@ -25,6 +26,7 @@ public class Enemy : MonoBehaviour
         {
             Patrol_Point_1();
         }
+        */
     }
 
     private void Patrol_Point_1()

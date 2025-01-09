@@ -23,6 +23,15 @@ public class Room : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            RoomSize roomSize = GetComponent<RoomSize>();
+            if (roomType == RoomType.Regular)
+            {
+                if (roomSize.Holder != null)
+                {
+                    EnemySpawner enemySpawner = roomSize.Holder.GetComponentInChildren<EnemySpawner>();
+                    TimeController.instance.updateCurrentEnemies(enemySpawner.enemies);
+                }
+            }
             TimeController.instance.currentRoom = this;
         }
     }
@@ -31,6 +40,10 @@ public class Room : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            if (roomType == RoomType.Regular)
+            {
+                TimeController.instance.updateCurrentEnemies(null);
+            }
             TimeController.instance.currentRoom = null;
         }
     }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 510399853380095134}
   m_Layer: 0
   m_Name: Wall (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 1116668916913671232}
   m_Layer: 0
   m_Name: Wall (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 1444415406700345573}
   m_Layer: 0
   m_Name: Wall (5)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 2060096164586520666}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -908,7 +908,7 @@ GameObject:
   - component: {fileID: 5874174091961726579}
   m_Layer: 0
   m_Name: Wall (4)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1038,7 +1038,7 @@ GameObject:
   - component: {fileID: 8479755697599763446}
   m_Layer: 0
   m_Name: Wall (6)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1196,6 +1196,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4327155049126624}
     m_Modifications:
+    - target: {fileID: 1975259035253896284, guid: 3106c5a509865616b8442dde363ac4a9, type: 3}
+      propertyPath: pos.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4518186287909759827, guid: 3106c5a509865616b8442dde363ac4a9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1239,6 +1243,18 @@ PrefabInstance:
     - target: {fileID: 4655059141369145995, guid: 3106c5a509865616b8442dde363ac4a9, type: 3}
       propertyPath: m_Name
       value: RoomObjects
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719082658637958602, guid: 3106c5a509865616b8442dde363ac4a9, type: 3}
+      propertyPath: pos.Array.data[1]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7964561894276104618, guid: 3106c5a509865616b8442dde363ac4a9, type: 3}
+      propertyPath: pos.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8951950512274642035, guid: 3106c5a509865616b8442dde363ac4a9, type: 3}
+      propertyPath: pos.Array.data[0]
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

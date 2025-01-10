@@ -307,6 +307,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9161888287808130460}
+  - component: {fileID: 7964561894276104618}
   m_Layer: 0
   m_Name: SpawnPoint (2)
   m_TagString: Untagged
@@ -329,6 +330,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8231846922975047993}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7964561894276104618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260560233803583137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68fbbe7988885c124a95941d86fb340c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pos: 0200000001000000
 --- !u!1 &2090645196896361680
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,6 +352,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4084951590533187324}
+  - component: {fileID: 6719082658637958602}
   m_Layer: 0
   m_Name: SpawnPoint (3)
   m_TagString: Untagged
@@ -360,6 +375,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8231846922975047993}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6719082658637958602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090645196896361680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68fbbe7988885c124a95941d86fb340c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pos: 0000000002000000
 --- !u!1 &2095476519951567200
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,6 +611,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1212193989428208376}
+  - component: {fileID: 8951950512274642035}
   m_Layer: 0
   m_Name: SpawnPoint (4)
   m_TagString: Untagged
@@ -605,6 +634,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8231846922975047993}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8951950512274642035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2513239609445245448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68fbbe7988885c124a95941d86fb340c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pos: 0000000003000000
 --- !u!1 &3620389153358718865
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,6 +688,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6303684126892967552}
+  - component: {fileID: 6459988316141089512}
   m_Layer: 0
   m_Name: SpawnPoint (1)
   m_TagString: Untagged
@@ -668,6 +711,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8231846922975047993}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6459988316141089512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3966975735926165606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68fbbe7988885c124a95941d86fb340c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pos: 00000000010000000200000003000000
 --- !u!1 &4655059141369145995
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,6 +806,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5883571234377202630}
+  - component: {fileID: 1975259035253896284}
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: Untagged
@@ -772,6 +829,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8231846922975047993}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1975259035253896284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4712899507148763113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68fbbe7988885c124a95941d86fb340c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pos: 0300000001000000
 --- !u!1 &5291128395243277389
 GameObject:
   m_ObjectHideFlags: 0
@@ -1162,6 +1232,7 @@ MonoBehaviour:
   - {fileID: 1212193989428208376}
   enemies: []
   enemyPrefab: {fileID: 5699241335405096945, guid: ef6535d9d87d59f14b0cf407cfda3981, type: 3}
+  PatrolPoint: {fileID: 7200844864818247359, guid: 7661f043c2c6d8445933fd66dc45ea38, type: 3}
 --- !u!61 &1466092248142113170
 BoxCollider2D:
   m_ObjectHideFlags: 0

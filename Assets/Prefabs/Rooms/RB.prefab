@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7257529822805292494}
   m_Layer: 0
   m_Name: Wall (6)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 4684901949038212117}
   m_Layer: 0
   m_Name: Wall (5)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 1915471507741918699}
   m_Layer: 0
   m_Name: Wall (4)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -746,7 +746,7 @@ GameObject:
   - component: {fileID: 6557093566361793259}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -876,7 +876,7 @@ GameObject:
   - component: {fileID: 3667381750616520219}
   m_Layer: 0
   m_Name: Wall (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1039,7 +1039,7 @@ GameObject:
   - component: {fileID: 2643602838075781522}
   m_Layer: 0
   m_Name: Wall (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1164,6 +1164,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4675656065730260}
     m_Modifications:
+    - target: {fileID: 1975259035253896284, guid: 3106c5a509865616b8442dde363ac4a9, type: 3}
+      propertyPath: pos.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975259035253896284, guid: 3106c5a509865616b8442dde363ac4a9, type: 3}
+      propertyPath: pos.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4518186287909759827, guid: 3106c5a509865616b8442dde363ac4a9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1207,6 +1215,26 @@ PrefabInstance:
     - target: {fileID: 4655059141369145995, guid: 3106c5a509865616b8442dde363ac4a9, type: 3}
       propertyPath: m_Name
       value: RoomObjects
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719082658637958602, guid: 3106c5a509865616b8442dde363ac4a9, type: 3}
+      propertyPath: pos.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7964561894276104618, guid: 3106c5a509865616b8442dde363ac4a9, type: 3}
+      propertyPath: pos.Array.data[0]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7964561894276104618, guid: 3106c5a509865616b8442dde363ac4a9, type: 3}
+      propertyPath: pos.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8951950512274642035, guid: 3106c5a509865616b8442dde363ac4a9, type: 3}
+      propertyPath: pos.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8951950512274642035, guid: 3106c5a509865616b8442dde363ac4a9, type: 3}
+      propertyPath: pos.Array.data[1]
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

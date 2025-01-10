@@ -34,24 +34,23 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("idle");
         }
 
-        if (x > 0)
-        {
-            lastFacingDirection = 1;
-        }
-        else if (x < 0)
-        {
-            lastFacingDirection = -1;
-        }
-
         if (PlayerShooting.instance.closestEnemy == null)
         {
             transform.localScale = new Vector3(currentScale.x * lastFacingDirection, currentScale.y, currentScale.z);
             GunTransform.localScale = new Vector3(0.5f * lastFacingDirection, 0.5f, 1);
+            if (x > 0)
+            {
+                lastFacingDirection = 1;
+            }
+            else if (x < 0)
+            {
+                lastFacingDirection = -1;
+            }
         }
         else
         {
             transform._mLookAt(PlayerShooting.instance.closestEnemy.transform, flipPlayer);
-            GunTransform._mLookAt(PlayerShooting.instance.closestEnemy.transform, flipGun);
+            lastFacingDirection = transform.localScale.x > 0 ? 1 : -1;
         }
         
         
@@ -67,8 +66,6 @@ public static class TransformExtensions
 {
     public static void _mLookAt(this Transform transform, Transform target, bool flip = false)
     {
-        if (target == null) return;
-
         Vector3 scale = transform.localScale;
 
         if (target.position.x > transform.position.x)

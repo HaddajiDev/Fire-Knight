@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public EnemyType type;
     public Transform Point_1;
     public Transform Point_2;
     
@@ -14,19 +15,29 @@ public class Enemy : MonoBehaviour
     public float Idle_Time = 5;
     int cap;
     bool isPatroling = true;
+    
+    [Header("Health Settings")]
+    public int Health = 100;
+    private int currentHealth;
+
+    void Start()
+    {
+        currentHealth = Health;
+    }
 
     private void Update()
     {
-        /*
-        if (isPatroling && cap == 1)
+        if (type == EnemyType.Patrol)
         {
-            Patrol_Point_2();
+            if (isPatroling && cap == 1)
+            {
+                Patrol_Point_2();
+            }
+            if (isPatroling && cap == 0)
+            {
+                Patrol_Point_1();
+            }
         }
-        if (isPatroling && cap == 0)
-        {
-            Patrol_Point_1();
-        }
-        */
     }
 
     private void Patrol_Point_1()
@@ -53,6 +64,31 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(Idle_Time);
         isPatroling = true;
         cap = index;        
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(other.gameObject);
+            TakeDamage(other.gameObject.GetComponent<Bullet>().Damage);
+        }
+    }
+
+    private void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public enum EnemyType
+    {
+        Patrol,
+        Chase,
+        idle
     }
 
 }

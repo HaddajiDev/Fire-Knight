@@ -250,7 +250,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.010315001, y: -0.031205028}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -261,7 +261,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.6060107, y: 0.6956931}
   m_EdgeRadius: 0
 --- !u!114 &4584072479121115708
 MonoBehaviour:
@@ -315,7 +315,7 @@ MonoBehaviour:
   GunSprite: {fileID: 6910399847941785265}
   current_Gun: {fileID: 11400000, guid: d7ce2a532820cb5b5b2fcfe43211ceac, type: 2}
   isShooting: 0
-  maxRange: 10
+  maxRange: 6
   closestEnemy: {fileID: 0}
   updateInterval: 0.1
 --- !u!1 &4049707509892784335
@@ -343,7 +343,7 @@ Transform:
   m_GameObject: {fileID: 4049707509892784335}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.611, y: 0, z: 0}
+  m_LocalPosition: {x: 0.916, y: 0.079, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

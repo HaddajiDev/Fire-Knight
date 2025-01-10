@@ -16,9 +16,9 @@ MonoBehaviour:
   Gunname: 
   prefab: {fileID: 0}
   Ammo: 30
-  damage: 1
+  damage: 25
   bulletForce: 60
   fireRate: 5
   reloadTime: 2
-  recoil: 7
+  recoil: 2
   bulletPerShot: 1

@@ -9,6 +9,8 @@ TagManager:
   - Room
   - joystick
   - Enemy
+  - Wall
+  - Bullet
   layers:
   - Default
   - TransparentFX

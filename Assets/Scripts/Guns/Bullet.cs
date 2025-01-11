@@ -9,9 +9,8 @@ public class Bullet : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Wall"))
+        if (!other.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Hit");
             Destroy(gameObject);
         }
     }

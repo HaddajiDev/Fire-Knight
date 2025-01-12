@@ -6,13 +6,16 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public EnemyType type;
-    public Transform Point_1;
-    public Transform Point_2;
     
+    
+    [Header("Enemy Patrol Settings")]
     public float Speed = 5;
-    
-    
     public float Idle_Time = 5;
+    
+    [HideInInspector] public Transform Point_1;
+    [HideInInspector] public Transform Point_2;
+    
+    
     int cap;
     bool isPatroling = true;
     

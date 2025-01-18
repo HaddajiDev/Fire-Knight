@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cadc8a576e683f87ead8c12751288c37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
+  speed: 12
   GunTransform: {fileID: 4820786422406471423}
 --- !u!95 &1928649579796976537
 Animator:

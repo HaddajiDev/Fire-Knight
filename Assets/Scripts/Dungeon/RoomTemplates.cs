@@ -53,8 +53,19 @@ public class RoomTemplates : MonoBehaviour {
 				room.CornerRoom = true;
 		}
 		AssignRoomTypes();
+		EnableDeadEnd();
 		Instantiate(RoomTemplates.instance.Player, PlayerspawnPoint.localPosition, Quaternion.identity);
 		GameManager.instance.StartGame();
+	}
+
+	private void EnableDeadEnd()
+	{
+		CheckDeadEnd[] checkDeadEnds = GameObject.FindObjectsOfType<CheckDeadEnd>();
+		for (int i = 0; i < checkDeadEnds.Length; i++)
+		{
+			checkDeadEnds[i].enabled = true;
+			//checkDeadEnds[i].CheckForDeadEnds();
+		}
 	}
 
 	private void AssignRoomTypes()

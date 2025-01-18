@@ -7,7 +7,6 @@ public class Room : MonoBehaviour
     public RoomType roomType;
     public bool CornerRoom = false;
     
-
     public enum RoomType
     {
         Empty,

@@ -1231,7 +1231,7 @@ MonoBehaviour:
   - {fileID: 4084951590533187324}
   - {fileID: 1212193989428208376}
   enemies: []
-  enemyPrefab: {fileID: 5699241335405096945, guid: ef6535d9d87d59f14b0cf407cfda3981, type: 3}
+  Enemeis: {fileID: 11400000, guid: 23d912f0a342ff1d1acacaaf82b4abf7, type: 2}
   PatrolPoint: {fileID: 7200844864818247359, guid: 7661f043c2c6d8445933fd66dc45ea38, type: 3}
 --- !u!61 &1466092248142113170
 BoxCollider2D:

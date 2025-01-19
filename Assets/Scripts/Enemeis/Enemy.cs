@@ -7,9 +7,9 @@ public class Enemy : MonoBehaviour
 {
     public EnemyType type;
     
+    public float Speed = 5;
     
     [Header("Enemy Patrol Settings")]
-    public float Speed = 5;
     public float Idle_Time = 5;
     
     [HideInInspector] public Transform Point_1;
@@ -22,6 +22,10 @@ public class Enemy : MonoBehaviour
     [Header("Health Settings")]
     public int Health = 100;
     private int currentHealth;
+    
+    [Header("Animator Settings")]
+    public Animator animator;
+    public SpriteRenderer spriteRenderer;
 
     void Start()
     {
@@ -66,7 +70,7 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(Idle_Time);
         isPatroling = true;
-        cap = index;        
+        cap = index;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -91,7 +95,12 @@ public class Enemy : MonoBehaviour
     {
         Patrol,
         Chase,
-        idle
+    }
+    
+    public enum subEnemyType
+    {
+        Teleport,
+        Roll,
     }
 
 }

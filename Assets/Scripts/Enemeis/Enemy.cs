@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public EnemyType type;
+    public subEnemyType subType;
     
     public float Speed = 5;
     
@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour
     
     int cap;
     bool isPatroling = true;
+
+    [HideInInspector] public Transform player;
     
     [Header("Health Settings")]
     public int Health = 100;
@@ -26,9 +28,35 @@ public class Enemy : MonoBehaviour
     [Header("Animator Settings")]
     public Animator animator;
     public SpriteRenderer spriteRenderer;
+    
+    [Header("Sub type settings")]
+    [HideInInspector] public List<Transform> waypoints;
+    
+    [Header("Guns")]
+    public Transform FirePoint;
+    public Transform gunTransform;
+    public Gun currentGun;
+    
+    
+    [Header("Shooting Enemy")]
+    private float muzzleOffset;
+    public GameObject round;
+    private int ammunition;
+    private int remainingAmmunition;
+    private float reloadTime;
+    private float fireRate;
+    private int roundsPerShot;
+    private float Recoil;
+    private float roundSpeed;
+    private ShootState shootState = ShootState.Ready;
+    private float nextShootTime = 0;
+    public int damage = 1;
+    [HideInInspector] public bool isShooting;
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        muzzleOffset = GetComponent<Renderer>().bounds.extents.z;
         currentHealth = Health;
     }
 
@@ -77,11 +105,14 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
+            Bullet bullet = other.gameObject.GetComponent<Bullet>();
+            if (bullet.Type == Bullet.ShooterType.Player)
+            {
+                TakeDamage(other.gameObject.GetComponent<Bullet>().Damage);
+            }
             Destroy(other.gameObject);
-            TakeDamage(other.gameObject.GetComponent<Bullet>().Damage);
         }
     }
-
     private void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -90,11 +121,100 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
+    public void GetGun(Gun gun)
+    {        
+        ammunition = gun.Ammo;
+        reloadTime = gun.reloadTime;
+        fireRate = gun.fireRate;
+        roundsPerShot = gun.bulletPerShot;
+        Recoil = gun.recoil;
+        roundSpeed = gun.bulletForce;
+        gunTransform.GetComponent<SpriteRenderer>().sprite = gun.sprite;
+
+        remainingAmmunition = gun.Ammo;
+        if (gun.prefab != null)
+        {
+            round = gun.prefab;
+        }
+        currentGun = gun;
+    }
+
+
+    public void updateShooting(Transform ShootPoint)
+    {
+        if (isShooting)
+        {
+            if (shootState == ShootState.Ready)
+            {
+                Shoot(ShootPoint);
+            }
+            switch (shootState)
+            {
+                case ShootState.Shooting:
+                    if (Time.time > nextShootTime)
+                    {
+                        shootState = ShootState.Ready;
+                    }
+                    break;
+                case ShootState.Reloading:
+                    if (Time.time > nextShootTime)
+                    {
+                        remainingAmmunition = ammunition;
+                        shootState = ShootState.Ready;
+                    }
+                    break;
+            }
+            
+        }
+        
+        if (remainingAmmunition < ammunition)
+        {
+            Reload();
+        }
+    }
+    public void Shoot(Transform ShootPoint)
+    {
+        if (shootState == ShootState.Ready)
+        {
+            for (int i = 0; i < roundsPerShot; i++)
+            {
+                Vector3 spreadVector = new Vector3(Random.Range(-Recoil, Recoil), Random.Range(-Recoil, Recoil));                
+                GameObject spawnedRound = Instantiate(round, ShootPoint.position + ShootPoint.forward * muzzleOffset, ShootPoint.rotation);
+                Bullet bullet = spawnedRound.GetComponent<Bullet>();
+                bullet.Type = Bullet.ShooterType.Enemy;
+                bullet.Damage = damage;
+                spawnedRound.GetComponent<Rigidbody2D>().velocity = (ShootPoint.right * roundSpeed) + spreadVector; 
+            }
+
+            remainingAmmunition--;
+            
+            if (remainingAmmunition > 0)
+            {
+                nextShootTime = Time.time + (1 / fireRate);
+                shootState = ShootState.Shooting;
+            }
+            else
+            {
+                Reload();
+            }
+        }
+    }
+    
+    public void Reload()
+    {
+        if (shootState == ShootState.Ready)
+        {
+            nextShootTime = Time.time + reloadTime;
+            shootState = ShootState.Reloading;
+        }
+    }
 
     public enum EnemyType
     {
         Patrol,
         Chase,
+        Special,
     }
     
     public enum subEnemyType
@@ -102,5 +222,10 @@ public class Enemy : MonoBehaviour
         Teleport,
         Roll,
     }
-
+    public enum ShootState
+    {
+        Ready,
+        Shooting,
+        Reloading
+    }
 }

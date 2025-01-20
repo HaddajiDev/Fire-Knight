@@ -100,11 +100,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  Point_1: {fileID: 0}
-  Point_2: {fileID: 0}
+  subType: 0
   Speed: 5
   Idle_Time: 1
+  Point_1: {fileID: 0}
+  Point_2: {fileID: 0}
+  player: {fileID: 0}
   Health: 100
+  animator: {fileID: 0}
+  spriteRenderer: {fileID: 7458934313931287195}
+  waypoints: []
+  FirePoint: {fileID: 0}
+  gunTransform: {fileID: 0}
+  currentGun: {fileID: 0}
+  round: {fileID: 0}
+  isShooting: 0
 --- !u!61 &246312884444831517
 BoxCollider2D:
   m_ObjectHideFlags: 0

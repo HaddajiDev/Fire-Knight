@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -33,6 +34,8 @@ public class EnemySpawner : MonoBehaviour
                 AssignPatrolPoints(_enemy, spawnPoint);
             }
             
+            if(_enemy.subType == Enemy.subEnemyType.Teleport)
+                _enemy.waypoints = spawnPoints.ToList();
             enemies.Add(_enemy);
         }
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class TeleportEnemy : Enemy
 {
     bool Teleporting = false;
+    bool isTeleporting = false;
 
 
     void Start()
@@ -20,15 +21,22 @@ public class TeleportEnemy : Enemy
         }
         else
         {
-            if (Vector3.Distance(player.transform.position, transform.position) < 5f)
+            if (!isTeleporting)
             {
-                isShooting = true;
-                updateShooting(FirePoint);
-            }
-            else
-            {
-                transform.position = Vector3.MoveTowards(transform.position, player.position, 5 * Time.deltaTime);
-                isShooting = false;
+                transform._mLookAt(player.transform, flip);
+                if (Vector3.Distance(player.transform.position, transform.position) < 5f)
+                {
+                    isShooting = true;
+                    updateShooting(FirePoint);
+                    animator.SetTrigger("idle");
+                }
+                else
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, player.position, 5 * Time.deltaTime);
+                    animator.SetTrigger("walk");
+                
+                    isShooting = false;
+                }
             }
         }
     }
@@ -38,6 +46,7 @@ public class TeleportEnemy : Enemy
     public void Teleport_in()
     {
         isShooting = false;
+        isTeleporting = true;
         animator.SetTrigger("tp_in");
         GetComponent<BoxCollider2D>().enabled = false;
         gameObject.tag = "Respawn";
@@ -61,6 +70,7 @@ public class TeleportEnemy : Enemy
     {
         gunTransform.GetComponent<SpriteRenderer>().enabled = condition == 0 ? true : false;
         isShooting = condition == 0 ? true : false;
+        isTeleporting = condition == 0 ? false : true;
     }
 
     IEnumerator in_out()

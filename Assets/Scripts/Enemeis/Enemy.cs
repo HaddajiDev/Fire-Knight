@@ -53,6 +53,8 @@ public class Enemy : MonoBehaviour
     public int damage = 1;
     [HideInInspector] public bool isShooting;
 
+    [HideInInspector] public bool flip;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;

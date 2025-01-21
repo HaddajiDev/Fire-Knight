@@ -118,7 +118,9 @@ MonoBehaviour:
   gunTransform: {fileID: 4565892898574366996}
   currentGun: {fileID: 11400000, guid: d7ce2a532820cb5b5b2fcfe43211ceac, type: 2}
   round: {fileID: 1486740722895953848, guid: 64d190b2c88b454b1a3e96dcf15d0aa3, type: 3}
+  damage: 1
   isShooting: 0
+  flip: 0
 --- !u!95 &6128769828552807930
 Animator:
   serializedVersion: 5
@@ -253,6 +255,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4565892898574366996}
   - component: {fileID: 1371235622044935928}
+  - component: {fileID: 8413228413870177760}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -328,3 +331,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8413228413870177760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9191949410232090905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4cc3123a8dda76828d99b96adf9dd80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Object: {fileID: 4565892898574366996}
+  FacingRight: 1

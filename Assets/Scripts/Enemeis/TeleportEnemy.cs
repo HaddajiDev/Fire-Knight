@@ -21,9 +21,9 @@ public class TeleportEnemy : Enemy
         }
         else
         {
+            transform._mLookAt(player.transform, flip);
             if (!isTeleporting)
             {
-                transform._mLookAt(player.transform, flip);
                 if (Vector3.Distance(player.transform.position, transform.position) < 5f)
                 {
                     isShooting = true;

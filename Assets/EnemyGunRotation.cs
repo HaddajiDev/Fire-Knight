@@ -18,7 +18,6 @@ public class EnemyGunRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Object._mLookAt(PlayerShooting.instance.transform, FacingRight);
         if (Object.rotation.z == 90 || Object.rotation.z == -90)
         {
             Object.Rotate(0, 180, 0);
@@ -54,6 +53,7 @@ public class EnemyGunRotation : MonoBehaviour
         {
             Flip();
         }
+        
     }
     
     

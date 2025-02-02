@@ -179,18 +179,33 @@ public class Enemy : MonoBehaviour
     {
         if (shootState == ShootState.Ready)
         {
+            FirePointDirection fireDirection = ShootPoint.GetComponent<FirePointDirection>();
+        
             for (int i = 0; i < roundsPerShot; i++)
             {
-                Vector3 spreadVector = new Vector3(Random.Range(-Recoil, Recoil), Random.Range(-Recoil, Recoil));                
-                GameObject spawnedRound = Instantiate(round, ShootPoint.position + ShootPoint.forward * muzzleOffset, ShootPoint.rotation);
+                Vector2 spreadVector = new Vector2(
+                    Random.Range(-Recoil, Recoil), 
+                    Random.Range(-Recoil, Recoil)
+                );                
+            
+                GameObject spawnedRound = Instantiate(
+                    round, 
+                    ShootPoint.position + ShootPoint.forward * muzzleOffset, 
+                    ShootPoint.rotation
+                );
+
+                Vector2 bulletDirection = fireDirection.GetFireDirection();
+            
                 Bullet bullet = spawnedRound.GetComponent<Bullet>();
                 bullet.Type = Bullet.ShooterType.Enemy;
                 bullet.Damage = damage;
-                spawnedRound.GetComponent<Rigidbody2D>().velocity = (ShootPoint.right * roundSpeed) + spreadVector; 
+            
+                spawnedRound.GetComponent<Rigidbody2D>().velocity = 
+                    (bulletDirection * roundSpeed) + spreadVector;
             }
 
             remainingAmmunition--;
-            
+        
             if (remainingAmmunition > 0)
             {
                 nextShootTime = Time.time + (1 / fireRate);

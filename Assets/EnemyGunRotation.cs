@@ -1,65 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyGunRotation : MonoBehaviour
 {
-    public Transform Object;
-    Vector2 GameobjectRotation;
-    private float GameobjectRotation2;
-    private float GameobjectRotation3;
-    
-    public bool FacingRight = true;
+    private Transform player;
+    private Transform enemyParent;
+    private SpriteRenderer gunRenderer;
+
+    public Transform firePoint;
+
     void Start()
     {
-        
+        enemyParent = transform.parent;
+        gunRenderer = GetComponent<SpriteRenderer>();
+        player = PlayerShooting.instance.transform;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Object.rotation.z == 90 || Object.rotation.z == -90)
+        if (player == null) return;
+        Vector3 direction = player.position - transform.position;
+        bool parentFacingRight = enemyParent.localScale.x > 0;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        if (!parentFacingRight)
         {
-            Object.Rotate(0, 180, 0);
+            angle = 180 - angle;
+            // angle *= -1;
         }
+        transform.localRotation = Quaternion.Euler(0, 0, angle);
         
-        GameobjectRotation = (PlayerShooting.instance.transform.position - Object.position).normalized;
-        if (GameobjectRotation.x > 0 && !FacingRight)
-        {
-            Flip();
-        }
-        else if (GameobjectRotation.x < 0 && FacingRight)
-        {
-            Flip();
-        }
-            
-        if (FacingRight)
-        {
-            GameobjectRotation2 = GameobjectRotation.x + GameobjectRotation.y * 90;
-            Object.transform.rotation = Quaternion.Euler(0f, 0f, GameobjectRotation2);
-        }
-        else
-        {
-            GameobjectRotation2 = GameobjectRotation.x + GameobjectRotation.y * -90;
-            Object.transform.rotation = Quaternion.Euler(0f, 180f, -GameobjectRotation2);
-        }
-        
-        
-        if (GameobjectRotation3 < 0 && FacingRight)
-        {
-            Flip();
-        }
-        else if (GameobjectRotation3 > 0 && !FacingRight)
-        {
-            Flip();
-        }
-        
-    }
-    
-    
-    public void Flip()
-    {
-        FacingRight = !FacingRight;
-        Object.transform.Rotate(0, 180, 0);
+        firePoint.rotation = transform.rotation;
+
+        gunRenderer.sortingOrder = enemyParent.GetComponent<SpriteRenderer>().sortingOrder + 1;
     }
 }

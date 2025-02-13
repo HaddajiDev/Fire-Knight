@@ -32,8 +32,8 @@ public class itemHelper : Editor
         serializedObject.Update();
         EditorGUILayout.PropertyField(_function);
         
-        EditorGUILayout.PropertyField(itemDescription);
         EditorGUILayout.PropertyField(itemName);
+        EditorGUILayout.PropertyField(itemDescription);
         EditorGUILayout.PropertyField(itemPrice);
         EditorGUILayout.PropertyField(itemIcon);
         switch ((item.Function)_function.enumValueIndex)

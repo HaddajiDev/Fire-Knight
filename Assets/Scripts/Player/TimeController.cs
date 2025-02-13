@@ -14,18 +14,22 @@ public class TimeController : MonoBehaviour
     public int FastMulitiplier = 2;
     public int SlowMultiplier = 2;
     public TMP_Text state;
+
+    [Header("Settings")]
+    public float TotalFastTime;
+    public float TotalSlowTime;
+    
     void Awake()
     {
         instance = this;
     }
-    
-
     public void isFastForward(bool check)
     {
         FastForward = check;
         
-        if (check)
+        if (check && TotalFastTime > 0)
         {
+            TotalFastTime -= Time.deltaTime;
             for (int i = 0; i < currentEnemeis.Count; i++)
             {
                 currentEnemeis[i].Speed *= FastMulitiplier;
@@ -45,8 +49,9 @@ public class TimeController : MonoBehaviour
     public void isSlowMotion(bool check)
     {
         SlowDown = check;
-        if (check)
+        if (check && TotalSlowTime > 0)
         {
+            TotalSlowTime -= Time.deltaTime;
             for (int i = 0; i < currentEnemeis.Count; i++)
             {
                 currentEnemeis[i].Speed /= SlowMultiplier;

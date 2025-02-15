@@ -7,8 +7,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public Region.RegionType CurrentRegion;
-    
     public CinemachineVirtualCamera vcam;
+    
+    [Header("coins")]
+    public int coins;
+    
 
     void Awake()
     {

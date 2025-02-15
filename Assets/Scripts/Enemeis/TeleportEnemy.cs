@@ -32,7 +32,7 @@ public class TeleportEnemy : Enemy
                 }
                 else
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, player.position, 5 * Time.deltaTime);
+                    transform.position = Vector3.MoveTowards(transform.position, player.position, Speed * Time.deltaTime);
                     animator.SetTrigger("walk");
                 
                     isShooting = false;

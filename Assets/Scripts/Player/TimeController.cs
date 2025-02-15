@@ -25,9 +25,13 @@ public class TimeController : MonoBehaviour
     }
     public void isFastForward(bool check)
     {
+        if (TotalFastTime <= 0)
+        {
+            return;
+        }
         FastForward = check;
         
-        if (check && TotalFastTime > 0)
+        if (check)
         {
             TotalFastTime -= Time.deltaTime;
             for (int i = 0; i < currentEnemeis.Count; i++)
@@ -48,8 +52,13 @@ public class TimeController : MonoBehaviour
 
     public void isSlowMotion(bool check)
     {
+        if (TotalSlowTime <= 0)
+        {
+            return;
+        }
+        
         SlowDown = check;
-        if (check && TotalSlowTime > 0)
+        if (check)
         {
             TotalSlowTime -= Time.deltaTime;
             for (int i = 0; i < currentEnemeis.Count; i++)
@@ -66,6 +75,14 @@ public class TimeController : MonoBehaviour
             }
             state.text = "";
         }
+    }
+
+    public void AddTimeValues(string value, float time)
+    {
+        if(value == "fast")
+            TotalFastTime += time;
+        else if(value == "slow")
+            TotalSlowTime += time;
     }
 
     public void updateCurrentEnemies(List<Enemy> enemies)

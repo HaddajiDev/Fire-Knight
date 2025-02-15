@@ -37,11 +37,30 @@ public class ShopManager : MonoBehaviour
             Image sprite = itemCards[i].transform.GetChild(2).GetComponent<Image>();
             TMP_Text description = itemCards[i].transform.GetChild(3).GetComponent<TMP_Text>();
             TMP_Text price = itemCards[i].transform.GetChild(4).GetComponent<Button>().GetComponentInChildren<TMP_Text>();
+            Button button = itemCards[i].transform.GetChild(4).GetComponent<Button>();
+            button.onClick.RemoveAllListeners();
             item_Name.text = RandomItems[i].itemName;
             sprite.sprite = RandomItems[i].icon;
             description.text = RandomItems[i].itemDescription;
             price.text = RandomItems[i].price.ToString();
+            
+            int index = i;
+            button.onClick.AddListener(() => assignFunctions(RandomItems[index]));
         }
     }
 
+    private void assignFunctions(item item)
+    {
+        if (GameManager.instance.coins >= item.price)
+        {
+            if (item._function == item.Function.FastForwardTime)
+            {
+                TimeController.instance.AddTimeValues("fast", item.value);
+            }
+            else if (item._function == item.Function.SlowMotionTime)
+            {
+                TimeController.instance.AddTimeValues("slow", item.value);
+            }
+        }
+    }
 }
